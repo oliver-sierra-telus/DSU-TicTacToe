@@ -1,3 +1,5 @@
 @startuml domainModel
 
+object TicTacToe
+
 @enduml

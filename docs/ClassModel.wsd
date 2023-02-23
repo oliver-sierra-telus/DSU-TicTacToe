@@ -94,7 +94,7 @@ Space *-- Coordinate
 Round -left-> Board
 Round -right-> Player
 
-Statistic --> Round
+Statistic <-- Round
 
 Player --> Mark
 Space --> Mark

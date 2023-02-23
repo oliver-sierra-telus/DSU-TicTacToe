@@ -1,5 +1,69 @@
 @startuml domainModel
 
-object TicTacToe
+skinparam monochrome reverse
+
+object TTTGame
+    object Board
+        object dimensions
+        object Spaces
+            object availability
+            object Coordinate
+                object positionX
+                object positionY
+    object BoardGoals
+        object paint
+        object validateChoice
+        object verifyChoiceExistence
+        object determineWinner
+    object Player
+        object id
+        object name
+        object mark
+        object PlayerGoals
+            object putPiece
+    object Rounds
+        object RoundGoals
+            object executeRound
+    object Piece
+        object pieceName
+    object Statistic
+        object winnerName
+
+TTTGame *-left- Board
+TTTGame *-- Player
+TTTGame *-- Rounds
+TTTGame *-- Statistic
+
+Board *-left- dimensions
+Board *-- Spaces
+Board o-- BoardGoals
+BoardGoals <|-- paint
+BoardGoals <|-- validateChoice
+BoardGoals <|-- verifyChoiceExistence
+BoardGoals <|-- determineWinner
+
+Spaces *-- availability
+Spaces *-- Coordinate
+Spaces o-- Piece
+
+Coordinate *-- positionX
+Coordinate *-- positionY
+
+Rounds o-- RoundGoals
+Rounds --> Player
+Rounds --> Board
+RoundGoals <|-- executeRound
+
+Player *-- id
+Player *-- name
+Player *-- mark
+Player o-- PlayerGoals
+PlayerGoals <|-- putPiece
+
+Piece *-- pieceName
+
+Statistic *-- winnerName
+Statistic --> Rounds
+
 
 @enduml

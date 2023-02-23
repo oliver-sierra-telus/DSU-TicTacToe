@@ -1,0 +1,99 @@
+@startuml ClassModel
+
+skinparam monochrome reverse
+
+package tictactoe{
+    class TTTGame{
+        -Board board
+        -Round round
+        -Statistic statistic
+        -Player player1
+        -Player player2
+        -ArrayList<Player> playersList
+
+        +void setup()
+        +void execute()
+        +void statistics()
+        -void addPlayer()
+        -void selectPlayer()
+        -Player searchPlayer()
+    }
+
+    class Player{
+        -int id
+        -String name
+        -Mark mark
+
+        +Player(int id, String name)
+        +void putPiece()
+    }
+
+    class Round{
+        -Board board
+        -Player player1
+        -Player player2
+        -Statistic statistic
+
+        +Round(Board board,Player player1,Player player2,Statistic statistic)
+        +void executeRounds()
+    }
+
+    class Statistic{
+        -ArrayList<String> statistics
+
+        +void addStatistic(String message)
+    }
+
+    package board{
+        class Board{
+            -int dimensions
+            -Space[] space
+
+            +Board(int dimensions,Space[] space)
+            +void paint
+            +void validateChoice
+            +void verifyChoiceExistence
+            +void determineWinner
+        }
+
+        class Space{
+            -boolean availability
+            -Mark mark
+            -Coordinate coordinate
+        }
+
+        class Coordinate{
+            -int positionX
+            -int positionY
+
+            +Coordinate(int positionX,int positionY)
+        }
+    }
+
+    package utils{
+        enum Mark{
+            0
+            X
+            EMPTY
+        }
+    }
+}
+
+TTTGame *-left- Board
+TTTGame *-- Player
+TTTGame *-- Round
+TTTGame *-- Statistic
+
+Board *-- Space
+
+Space *-- Coordinate
+
+Round -left-> Board
+Round -right-> Player
+
+Statistic --> Round
+
+Player --> Mark
+Space --> Mark
+
+@enduml

@@ -19,7 +19,7 @@ object TTTGame
         object name
         object mark
         object PlayerGoals
-            object putPiece
+            object putMark
     object Rounds
         object RoundGoals
             object executeRound
@@ -59,7 +59,7 @@ Player *-- id
 Player *-- name
 Player *-- Mark
 Player o-- PlayerGoals
-PlayerGoals <|-- putPiece
+PlayerGoals <|-- putMark
 
 Mark <|-- Zero
 Mark <|-- X

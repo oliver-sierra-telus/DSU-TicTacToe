@@ -10,11 +10,11 @@ object TTTGame
             object Coordinate
                 object positionX
                 object positionY
-    object BoardGoals
-        object paint
-        object validateChoice
-        object verifyChoiceExistence
-        object determineWinner
+        object BoardGoals
+            object paint
+            object validateChoice
+            object verifyChoiceExistence
+            object determineWinner
     object Player
         object id
         object name

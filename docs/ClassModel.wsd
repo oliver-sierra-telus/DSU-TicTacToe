@@ -15,7 +15,8 @@ package tictactoe{
         +void execute()
         +void statistics()
         -void addPlayer()
-        -void selectPlayer()
+        -void displayPlayers()
+        -Player selectPlayer()
         -Player searchPlayer()
     }
 
@@ -25,7 +26,7 @@ package tictactoe{
         -Mark mark
 
         +Player(int id, String name)
-        +void putPiece()
+        +void putMark()
     }
 
     class Round{
@@ -47,17 +48,17 @@ package tictactoe{
     package board{
         class Board{
             -int dimensions
-            -Space[] space
+            -Space[][] board
 
-            +Board(int dimensions,Space[] space)
-            +void paint
-            +void validateChoice
-            +void verifyChoiceExistence
-            +void determineWinner
+            +Board()
+            -void initializeBoard()
+            +void paint()
+            +boolean validateChoice(Coordinate coordinate)
+            +boolean verifyChoiceExistence()
+            +void determineWinner()
         }
 
         class Space{
-            -boolean availability
             -Mark mark
             -Coordinate coordinate
         }
@@ -75,6 +76,8 @@ package tictactoe{
             0
             X
             EMPTY
+
+            -boolean available
         }
     }
 }

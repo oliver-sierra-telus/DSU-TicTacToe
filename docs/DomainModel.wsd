@@ -6,7 +6,6 @@ object TTTGame
     object Board
         object dimensions
         object Spaces
-            object availability
             object Coordinate
                 object positionX
                 object positionY
@@ -24,8 +23,11 @@ object TTTGame
     object Rounds
         object RoundGoals
             object executeRound
-    object Piece
-        object pieceName
+    object Mark
+        object Zero
+        object X
+        object Empty
+        object availability
     object Statistic
         object winnerName
 
@@ -42,9 +44,8 @@ BoardGoals <|-- validateChoice
 BoardGoals <|-- verifyChoiceExistence
 BoardGoals <|-- determineWinner
 
-Spaces *-- availability
 Spaces *-- Coordinate
-Spaces o-- Piece
+Spaces o-- Mark
 
 Coordinate *-- positionX
 Coordinate *-- positionY
@@ -56,14 +57,17 @@ RoundGoals <|-- executeRound
 
 Player *-- id
 Player *-- name
-Player *-- mark
+Player *-- Mark
 Player o-- PlayerGoals
 PlayerGoals <|-- putPiece
 
-Piece *-- pieceName
+Mark <|-- Zero
+Mark <|-- X
+Mark <|-- Empty
+Mark *-- availability
 
 Statistic *-- winnerName
-Statistic --> Rounds
+Statistic <-- Rounds
 
 
 @enduml

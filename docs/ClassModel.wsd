@@ -2,75 +2,81 @@
 
 skinparam monochrome reverse
 
-class TTTGame{
-    -Board board
-    -Round round
-    -Statistic statistic
-    -Player player1
-    -Player player2
-    -ArrayList<Player> playersList
+package tictactoe{
+    class TTTGame{
+        -Board board
+        -Round round
+        -Statistic statistic
+        -Player player1
+        -Player player2
+        -ArrayList<Player> playersList
 
-    +void setup()
-    +void execute()
-    +void statistics()
-    -void addPlayer()
-    -void selectPlayer()
-    -Player searchPlayer()
-}
+        +void setup()
+        +void execute()
+        +void statistics()
+        -void addPlayer()
+        -void selectPlayer()
+        -Player searchPlayer()
+    }
 
-class Board{
-    -int dimensions
-    -Space[] space
+    class Player{
+        -int id
+        -String name
+        -Mark mark
 
-    +Board(int dimensions,Space[] space)
-    +void paint
-    +void validateChoice
-    +void verifyChoiceExistence
-    +void determineWinner
-}
+        +Player(int id, String name)
+        +void putPiece()
+    }
 
-class Space{
-    -boolean availability
-    -Mark mark
-    -Coordinate coordinate
-}
+    class Round{
+        -Board board
+        -Player player1
+        -Player player2
+        -Statistic statistic
 
-class Coordinate{
-    -int positionX
-    -int positionY
+        +Round(Board board,Player player1,Player player2,Statistic statistic)
+        +void executeRounds()
+    }
 
-    +Coordinate(int positionX,int positionY)
-}
+    class Statistic{
+        -ArrayList<String> statistics
 
-enum Mark{
-    0
-    X
-    EMPTY
-}
+        +void addStatistic(String message)
+    }
 
-class Player{
-    -int id
-    -String name
-    -Mark mark
+    package board{
+        class Board{
+            -int dimensions
+            -Space[] space
 
-    +Player(int id, String name)
-    +void putPiece()
-}
+            +Board(int dimensions,Space[] space)
+            +void paint
+            +void validateChoice
+            +void verifyChoiceExistence
+            +void determineWinner
+        }
 
-class Round{
-    -Board board
-    -Player player1
-    -Player player2
-    -Statistic statistic
+        class Space{
+            -boolean availability
+            -Mark mark
+            -Coordinate coordinate
+        }
 
-    +Round(Board board,Player player1,Player player2,Statistic statistic)
-    +void executeRounds()
-}
+        class Coordinate{
+            -int positionX
+            -int positionY
 
-class Statistic{
-    -ArrayList<String> statistics
+            +Coordinate(int positionX,int positionY)
+        }
+    }
 
-    +void addStatistic(String message)
+    package utils{
+        enum Mark{
+            0
+            X
+            EMPTY
+        }
+    }
 }
 
 TTTGame *-left- Board

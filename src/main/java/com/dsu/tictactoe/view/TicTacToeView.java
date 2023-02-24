@@ -14,5 +14,11 @@ public class TicTacToeView {
 
     }
 
+    public void showInstruccions() {
+    }
+
+    public void showStatistics(Object result) {
+    }
+
     
 }

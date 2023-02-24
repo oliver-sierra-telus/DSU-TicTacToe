@@ -1,0 +1,129 @@
+@startuml class model
+
+package tictactoe{
+
+    class TicactoeApp{
+        -Ticactoe tictactoe
+        -TurnController turnController
+        -PlayerController playerController
+        -BoardController boardController
+        +void runGame()
+    }
+
+    package controller{
+        class TictactoeController{
+
+        }
+
+        class TurnController{
+
+        }
+        class PlayerController{
+
+        }
+
+        class HumanPlayerController{
+
+        }
+
+        class IAPlayerController{
+
+        }
+
+        class BoardController{
+
+        }
+        class HistoryController{
+
+        }
+
+        TictactoeController -->TurnController
+
+        HumanPlayerController -up-|> PlayerController
+        IAPlayerController -up-|> PlayerController
+
+        TurnController --> PlayerController
+        TurnController --> BoardController
+        TurnController --> HistoryController
+
+    }
+
+    package view{
+        class BoardView{
+
+        }
+
+        class PlayerView{
+
+        }
+
+        class TurnView{
+
+        }
+
+        class TictactoeView{
+
+        }
+
+        class HumanPlayerView{
+
+        }
+
+        class IAPlayerView{
+
+        }
+        TictactoeView ..> TurnView
+        TurnView ..> BoardView
+        TurnView ..> PlayerView
+
+        HumanPlayerView -up-|> PlayerView
+        IAPlayerView -up-|> PlayerView
+
+    }
+
+    package model {
+        class Tictactoe{
+            -Board board
+            -Turn turn 
+            -Player[2] players
+        }        
+
+        class Board{
+
+        }
+        
+        class Turn{
+
+        }
+
+        class Player{
+
+        }
+
+        enum Mark{
+            X
+            O
+            EMPTY
+        }
+
+        Tictactoe *-- Board
+        Tictactoe *-- Turn
+        Tictactoe *-- Player:2
+        Board *-- Mark:3X3
+    }
+
+
+    TicactoeApp *-- TictactoeController
+    
+    
+
+    
+
+    TictactoeController -right-> TictactoeView
+    TictactoeController --> Tictactoe
+    TurnController -right-> TurnView
+    TurnController --> Turn
+
+}
+
+@enduml

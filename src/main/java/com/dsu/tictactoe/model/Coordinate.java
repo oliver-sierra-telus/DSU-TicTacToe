@@ -14,6 +14,17 @@ public class Coordinate {
     public int getY() {
         return y;
     }
+
+    public boolean isInRange(int min, int max){
+        return isInRangeValue(x,min,max) && isInRangeValue(y,min,max);
+    }
     
+    private boolean isInRangeValue(int value, int min, int max){
+        return (value>=min)&&(value<=max);
+    }
+
+    public static Coordinate increment(Coordinate coordinate, int incrementX, int incrementY){
+        return new Coordinate(coordinate.getX()+incrementX, coordinate.getY()+incrementY);
+    }
     
 }

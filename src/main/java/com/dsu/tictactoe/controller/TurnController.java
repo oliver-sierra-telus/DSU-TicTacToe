@@ -3,10 +3,12 @@ package com.dsu.tictactoe.controller;
 import com.dsu.tictactoe.model.Coordinate;
 import com.dsu.tictactoe.model.Mark;
 import com.dsu.tictactoe.model.PutMarkError;
+import com.dsu.tictactoe.model.Result;
 import com.dsu.tictactoe.model.Turn;
+import com.dsu.tictactoe.model.Player;
 import com.dsu.tictactoe.view.TurnView;
 
-public class TurnController {
+public class TurnController implements ReadyToPlay {
 
     private Turn turn;
     private BoardController boardController;
@@ -36,33 +38,34 @@ public class TurnController {
         Mark playerMark;
         Mark[][] markMatrix;
         do {
+            playerMark = boardController.getTurnMark();// turn
             markMatrix = boardController.getMarkMatrix();
             putMarkError = PutMarkError.NOT_ERROR;
             do {
-                playerMark = BoardController.getTurnMark();
                 turnView.playerTurn(playerMark, putMarkError);
-                playerCoordinate = playerController.getCoordinate(markMatrix,playerMark);
+                playerCoordinate = playerController.getPutCoordinate(markMatrix,playerMark,putMarkError);
                 putMarkError = boardController.putMark(playerCoordinate);
             } while (putMarkError != PutMarkError.NOT_ERROR);
-
-        } while (!boardController.isTicTacToe() && !boardController.isFull());
+            boardController.setNextMark();
+        } while (!boardController.isTicTacToe() || !boardController.isFull());
     }
 
-    public Object getResult() {
-        assert verifiedAllIsSetUp();
-        return null;
+    public Result getResult() {
+        assert verifiedAllIsSetUp(); //throws exception
+        Player winner = (boardController.isATie())?null:boardController.getWinner();
+        return new Result(playerController.getPlayers(), boardController.isATie() , winner);
     }
 
     private boolean verifiedAllIsSetUp() {
-        return (turn != null) && isBoardSetUp() && isPlayerSetUp();
+        return this.isReady() && checkIsReady(boardController) && checkIsReady(playerController);
     }
 
-    private boolean isBoardSetUp() {
-        return ((boardController != null) && (boardController.isReady()));
+    private boolean checkIsReady( ReadyToPlay controllerReady){
+        return ((controllerReady != null) && (controllerReady.isReady()));
     }
 
-    private boolean isPlayerSetUp() {
-        return ((playerController != null) && (playerController.isReady()));
+    public boolean isReady() {
+        return (turn != null);
     }
 
 }

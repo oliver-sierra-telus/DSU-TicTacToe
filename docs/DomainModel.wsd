@@ -9,11 +9,11 @@ object TTTGame
             object Coordinate
                 object positionX
                 object positionY
-    object BoardGoals
-        object paint
-        object validateChoice
-        object verifyChoiceExistence
-        object determineWinner
+        object BoardGoals
+            object paint
+            object validateChoice
+            object verifyChoiceExistence
+            object determineWinner
     object Player
         object id
         object name
@@ -27,7 +27,7 @@ object TTTGame
         object Zero
         object X
         object Empty
-        object availability
+        object isAvailable
     object Statistic
         object winnerName
 
@@ -64,7 +64,7 @@ PlayerGoals <|-- putMark
 Mark <|-- Zero
 Mark <|-- X
 Mark <|-- Empty
-Mark *-- availability
+Mark *-- isAvailable
 
 Statistic *-- winnerName
 Statistic <-- Rounds

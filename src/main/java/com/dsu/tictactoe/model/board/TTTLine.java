@@ -1,4 +1,4 @@
-package com.dsu.tictactoe.model;
+package com.dsu.tictactoe.model.board;
 
 public enum TTTLine {
     ROW(1,0),

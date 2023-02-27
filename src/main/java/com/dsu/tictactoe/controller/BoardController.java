@@ -1,11 +1,10 @@
 package com.dsu.tictactoe.controller;
 
-import com.dsu.tictactoe.model.Board;
-import com.dsu.tictactoe.model.Coordinate;
-import com.dsu.tictactoe.model.Mark;
-import com.dsu.tictactoe.model.Player;
-import com.dsu.tictactoe.model.PutMarkError;
-import com.dsu.tictactoe.model.TTTLine;
+import com.dsu.tictactoe.model.board.Board;
+import com.dsu.tictactoe.model.board.Coordinate;
+import com.dsu.tictactoe.model.board.Mark;
+import com.dsu.tictactoe.model.board.PutMarkError;
+import com.dsu.tictactoe.model.board.TTTLine;
 
 public class BoardController implements ReadyToPlay {
 
@@ -20,7 +19,7 @@ public class BoardController implements ReadyToPlay {
     }
 
     public boolean isReady() {
-        return board != null;
+        return board != null && markWinner != null && actualMark != null;
     }
 
     public boolean isTicTacToe() {
@@ -52,9 +51,6 @@ public class BoardController implements ReadyToPlay {
     }
 
     private void verifyTicTacToe(Coordinate coordinate) {
-        if (board.getCoordinateMark(coordinate) == Mark.EMPTY) {
-            return;
-        }
         Mark[][] markMatrix = board.getMatrixMarks();
         for (TTTLine tttLine : TTTLine.values()) {
             if (verifyLine(markMatrix, coordinate, tttLine)) {
@@ -68,28 +64,27 @@ public class BoardController implements ReadyToPlay {
         Mark mark = markMatrix[coordinate.getX()][coordinate.getY()];
         int maxRange = markMatrix.length;
         Coordinate testCoordinate = coordinate;
-        do {
-            if (markMatrix[testCoordinate.getX()][testCoordinate.getY()] != mark) {
-                return false;
-            }
-            testCoordinate = Coordinate.increment(testCoordinate, tttLine.getMoventX(), tttLine.getMoventY());
-        } while (testCoordinate.isInRange(0, maxRange));
-        testCoordinate = coordinate;
-        do {
-            if (markMatrix[testCoordinate.getX()][testCoordinate.getY()] != mark) {
-                return false;
-            }
-            testCoordinate = Coordinate.increment(testCoordinate, -tttLine.getMoventX(), -tttLine.getMoventY());
-        } while (testCoordinate.isInRange(0, maxRange));
-        return false;
+        int moventChange = 1;
+        for (int i = 0; i < 2; i++) {
+            testCoordinate = coordinate;
+            testCoordinate = Coordinate.increment(testCoordinate, moventChange*tttLine.getMoventX(), moventChange*tttLine.getMoventY());
+            while (testCoordinate.isInRange(0, maxRange)) {    
+                if (markMatrix[testCoordinate.getX()][testCoordinate.getY()] != mark) {
+                    return false;
+                }
+                testCoordinate = Coordinate.increment(testCoordinate, moventChange*tttLine.getMoventX(), moventChange*tttLine.getMoventY());
+            } 
+            moventChange*=-1;
+        }
+        return true;
     }
 
     public boolean isATie() {
-        return false;
+        return markWinner==Mark.EMPTY && board.getNumberEmptySpots()==0;
     }
 
-    public Player getWinner() {
-        return null;
+    public Mark getWinner() {
+        return markWinner;
     }
 
     public void setNextMark() {

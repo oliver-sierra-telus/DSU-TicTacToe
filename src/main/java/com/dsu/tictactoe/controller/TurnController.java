@@ -1,10 +1,10 @@
 package com.dsu.tictactoe.controller;
 
-import com.dsu.tictactoe.model.Coordinate;
-import com.dsu.tictactoe.model.Mark;
-import com.dsu.tictactoe.model.PutMarkError;
 import com.dsu.tictactoe.model.Result;
 import com.dsu.tictactoe.model.Turn;
+import com.dsu.tictactoe.model.board.Coordinate;
+import com.dsu.tictactoe.model.board.Mark;
+import com.dsu.tictactoe.model.board.PutMarkError;
 import com.dsu.tictactoe.model.Player;
 import com.dsu.tictactoe.view.TurnView;
 
@@ -32,7 +32,8 @@ public class TurnController implements ReadyToPlay {
     }
 
     public void initGame() {
-        assert verifiedAllIsSetUp();
+        assert isReady();
+        playerController.setPlayersMarks(new Mark[]{Mark.O,Mark.X});
         PutMarkError putMarkError = PutMarkError.NOT_ERROR;
         Coordinate playerCoordinate;
         Mark playerMark;
@@ -45,19 +46,15 @@ public class TurnController implements ReadyToPlay {
                 turnView.playerTurn(playerMark, putMarkError);
                 playerCoordinate = playerController.getPutCoordinate(markMatrix,playerMark,putMarkError);
                 putMarkError = boardController.putMark(playerCoordinate);
-            } while (putMarkError != PutMarkError.NOT_ERROR);
+            } while (putMarkError.isError());
             boardController.setNextMark();
         } while (!boardController.isTicTacToe() || !boardController.isFull());
     }
 
     public Result getResult() {
-        assert verifiedAllIsSetUp(); //throws exception
-        Player winner = (boardController.isATie())?null:boardController.getWinner();
+        assert isReady(); //throws exception
+        Player winner = (boardController.isATie())?null:playerController.getAccordingMark(boardController.getWinner());
         return new Result(playerController.getPlayers(), boardController.isATie() , winner);
-    }
-
-    private boolean verifiedAllIsSetUp() {
-        return this.isReady() && checkIsReady(boardController) && checkIsReady(playerController);
     }
 
     private boolean checkIsReady( ReadyToPlay controllerReady){
@@ -65,7 +62,7 @@ public class TurnController implements ReadyToPlay {
     }
 
     public boolean isReady() {
-        return (turn != null);
+        return (turn != null)&&this.isReady() && checkIsReady(boardController) && checkIsReady(playerController);
     }
 
 }

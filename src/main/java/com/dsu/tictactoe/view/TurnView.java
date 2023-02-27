@@ -1,6 +1,6 @@
 package com.dsu.tictactoe.view;
 
-import com.dsu.tictactoe.model.PutMarkError;
+import com.dsu.tictactoe.model.board.PutMarkError;
 
 public class TurnView {
 

@@ -16,6 +16,5 @@ public class TictactoeApp {
         tictacToeController.setupGame();
         tictacToeController.initGame();
         tictacToeController.statistics();
-
     }
 }

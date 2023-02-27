@@ -14,4 +14,12 @@ public enum Mark {
     public String getValue() {
         return value;
     }
+
+    public boolean isAvailable(Mark mark) {
+        if(mark.equals(Mark.EMPTY)){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

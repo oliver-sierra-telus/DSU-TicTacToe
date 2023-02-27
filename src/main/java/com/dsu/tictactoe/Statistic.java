@@ -8,4 +8,11 @@ public class Statistic {
     public void addStatistic(String message){
         statistics.add(message);
     }
+
+    public void displayStatistics() {
+        System.out.println("=========STATISTICS=========");
+        for(String st : statistics){
+            System.out.println(st);
+        }
+    }
 }

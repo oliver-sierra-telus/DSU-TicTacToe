@@ -24,7 +24,7 @@ public class Player {
             System.out.print("ROW: ");
             row = Console.getInt();
 
-            if(row <= 0 || row >= 3){
+            if(row <= 0 || row > 3){
                 System.out.println("Invalid row! It must be between 1 and 3");
                 validRow = false;
             }else{
@@ -37,7 +37,7 @@ public class Player {
             System.out.print("COLUMN: ");
             column = Console.getInt();
 
-            if(column <= 0 || column >= 3){
+            if(column <= 0 || column > 3){
                 System.out.println("Invalid column! It must be between 1 and 3");
                 validColumn = false;
             }else{
@@ -45,7 +45,7 @@ public class Player {
             }
         }while(validColumn == false);
 
-        return new Coordinate(row, column);
+        return new Coordinate(row - 1, column - 1);
     }
 
     @Override

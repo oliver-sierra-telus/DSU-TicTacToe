@@ -23,7 +23,7 @@ public class Result {
         return winner;
     }
 
-    public Player getLosser(){
+    public Player getLoser(){
         if (winner==null)
             return null;
         return (winner==players[0])?players[1]:players[0];

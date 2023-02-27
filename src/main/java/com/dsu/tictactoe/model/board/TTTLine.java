@@ -1,24 +1,24 @@
 package com.dsu.tictactoe.model.board;
 
 public enum TTTLine {
-    ROW(1,0),
-    COLUMN(0,1),
-    DIAGONAL(1,1),
-    INVERTED_DIAGONAL(1,-1);
+    ROW(new Coordinate(1,0)),
+    COLUMN(new Coordinate(0,1)),
+    DIAGONAL(new Coordinate(1,1)),
+    INVERTED_DIAGONAL(new Coordinate(1,-1));
 
-    private int moventX;
-    private int moventY;
+    private Coordinate direction;
+    private Coordinate invertDirection;
 
-    private TTTLine(int moventX, int moventY) {
-        this.moventX = moventX;
-        this.moventY = moventY;
+    private TTTLine(Coordinate direction) {
+        this.direction = direction;
+        invertDirection = new Coordinate(direction.getX()*-1, direction.getY()*-1);
     }
 
-    public int getMoventX() {
-        return moventX;
+    public Coordinate getDirection(){
+        return direction;
     }
 
-    public int getMoventY() {
-        return moventY;
+    public Coordinate getInvertDirection(){
+        return invertDirection;
     }
 }

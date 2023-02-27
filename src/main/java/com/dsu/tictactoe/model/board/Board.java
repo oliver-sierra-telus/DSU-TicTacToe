@@ -6,6 +6,7 @@ public class Board {
     private Mark[][] matrixMarks;
     private final int MATRIX_DIMENSION=3;
     private int emptySpots = 0;
+    private Mark markWinner;
 
     public Board(){
         matrixMarks = new Mark[MATRIX_DIMENSION][MATRIX_DIMENSION];
@@ -43,4 +44,14 @@ public class Board {
         return matrixMarks[coordinate.getX()][coordinate.getY()];
     }
 
+    public Mark getMarkWinner() {
+        return markWinner;
+    }
+
+    public void setMarkWinner(Mark markWinner) {
+        this.markWinner = markWinner;
+    }
+
+
+    
 }   

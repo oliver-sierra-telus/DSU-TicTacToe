@@ -1,5 +1,7 @@
 package com.dsu.tictactoe.controller;
 
+import com.dsu.tictactoe.controller.player.HumanPlayerController;
+import com.dsu.tictactoe.controller.player.PlayerController;
 import com.dsu.tictactoe.model.Tictactoe;
 import com.dsu.tictactoe.view.TicTacToeView;
 
@@ -15,7 +17,7 @@ public class TictacToeController {
         this.tictactoe = tictactoe;
         this.ticTacToeView = new TicTacToeView();
         boardController = new BoardController();
-        playerController = new PlayerController();
+        playerController = new HumanPlayerController();
         turnController = new TurnController();
     }
 
@@ -25,6 +27,8 @@ public class TictacToeController {
         tictactoe.newGame(playerController.getPlayers());
         boardController.setBoard(tictactoe.getBoard());
         turnController.setTurn(tictactoe.getTurn());
+        turnController.setPlayerController(playerController);
+        turnController.setBoardController(boardController);
     }
 
     public void initGame() {

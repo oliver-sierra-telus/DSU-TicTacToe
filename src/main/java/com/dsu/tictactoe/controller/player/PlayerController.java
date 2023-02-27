@@ -1,15 +1,16 @@
-package com.dsu.tictactoe.controller;
+package com.dsu.tictactoe.controller.player;
 
+import com.dsu.tictactoe.controller.ReadyToPlay;
 import com.dsu.tictactoe.model.Player;
 import com.dsu.tictactoe.model.board.Coordinate;
 import com.dsu.tictactoe.model.board.Mark;
 import com.dsu.tictactoe.model.board.PutMarkError;
 import com.dsu.tictactoe.view.PlayerView;
 
-public class PlayerController implements ReadyToPlay{
+public abstract class PlayerController implements ReadyToPlay{
 
     private Player[] players;
-    private PlayerView playerView;
+    protected PlayerView playerView;
     private final int NUMBER_PLAYERS = 2;
 
     public PlayerController(){
@@ -17,14 +18,21 @@ public class PlayerController implements ReadyToPlay{
         players = new Player[NUMBER_PLAYERS];
     }
 
+    /**
+     * For this reason we create the PutMarkError
+     * To avoid code of this type
+     */
     public void setNewGamePlayers(){
-        Player selectedPlayer=null;
-        for (int i = 0; i < players.length; i++) {
-            if (i!=0){
-              selectedPlayer = players[0];
+        players[0] = playerView.getPlayer(null,"first");
+        String errorMessage = null;
+        do {
+            
+            players[1] = playerView.getPlayer(errorMessage,"second");
+            errorMessage =null;
+            if(players[0].equals(players[1])){
+                errorMessage = "Repeated player";
             }
-            players[i] = playerView.getPlayer(selectedPlayer);
-        }
+        } while (errorMessage!=null);
     }
 
     public boolean isReady() {
@@ -33,12 +41,10 @@ public class PlayerController implements ReadyToPlay{
 
     public Player[] getPlayers() {
         assert isReady();
-        return players.clone();
+        return players;
     }
 
-    public Coordinate getPutCoordinate(Mark[][] markMatrix, Mark playerMark, PutMarkError putMarkError) {
-        return null;
-    }
+    public abstract Coordinate getPutCoordinate(Mark[][] markMatrix, Mark playerMark, PutMarkError putMarkError);
 
     public Player getAccordingMark(Mark winner) {
         assert winner!=Mark.EMPTY && this.isReady();

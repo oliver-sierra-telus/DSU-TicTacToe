@@ -4,16 +4,26 @@ import com.dsu.tictactoe.model.board.Board;
 
 public class Tictactoe {
 
+    private Board board;
+    private Turn turn; 
+    private Player[] players;
+
+    public void setPlayers(Player[] players) {
+        this.players = players;
+    }
+
     public void newGame(Player[] players) {
-        
+        this.players = players;
+        this.board = new Board();
+        this.turn = new Turn();
     }
 
     public Board getBoard() {
-        return null;
+        return board;
     }
 
     public Turn getTurn() {
-        return null;
+        return turn;
     }
 
 }

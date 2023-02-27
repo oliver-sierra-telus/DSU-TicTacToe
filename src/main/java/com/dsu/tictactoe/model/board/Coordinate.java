@@ -26,5 +26,14 @@ public class Coordinate {
     public static Coordinate increment(Coordinate coordinate, int incrementX, int incrementY){
         return new Coordinate(coordinate.getX()+incrementX, coordinate.getY()+incrementY);
     }
+
+    public static Coordinate increment(Coordinate coordinate, Coordinate coordinate2){
+        return new Coordinate(coordinate.getX()+coordinate2.getX(), coordinate.getY()+coordinate2.getY());
+    }
+
+    @Override
+    public String toString() {
+        return "Coordinate [x=" + x + ", y=" + y + "]";
+    }
     
 }

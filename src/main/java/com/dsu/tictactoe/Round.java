@@ -20,28 +20,37 @@ public class Round {
         boolean cont = true;
 
         board.paint();
+
+        // While neither player has won
         while (cont == true) {
-            if(board.verifyChoiceExistence() == false){
+            // Check if the board isn't full
+            if (board.verifyChoiceExistence() == false) {
                 return;
-            }else{
-                executeTurn(player1);
-            if (board.determineWinner(player1.getMark()) == true) {
-                System.out.println("\nWINNER " + player1.toString() + "\tMARK: " + player1.getMark().getValue());
-                cont = false;
             } else {
-                cont = true;
-                if(board.verifyChoiceExistence() == false){
-                    return;
-                }else{
-                    executeTurn(player2);
-                if (board.determineWinner(player2.getMark()) == true) {
-                    System.out.println("WINNER " + player2.toString() + "\tMARK: " + player2.getMark().getValue());
+                // Turn for player1
+                executeTurn(player1);
+                //Check if player1 win with his selection
+                if (board.determineWinner(player1.getMark()) == true) {
+                    System.out.println("\nWINNER " + player1.toString() + "\tMARK: " + player1.getMark().getValue());
                     cont = false;
                 } else {
                     cont = true;
+                    //Check if the board isn't full
+                    if (board.verifyChoiceExistence() == false) {
+                        return;
+                    } else {
+                        //Turn for player2
+                        executeTurn(player2);
+                        //Check if the board isn't full
+                        if (board.determineWinner(player2.getMark()) == true) {
+                            System.out.println(
+                                    "WINNER " + player2.toString() + "\tMARK: " + player2.getMark().getValue());
+                            cont = false;
+                        } else {
+                            cont = true;
+                        }
+                    }
                 }
-                }
-            }
             }
         }
     }
@@ -50,11 +59,13 @@ public class Round {
         boolean error = false;
 
         do {
-            Coordinate coordinate = player.putPiece();
-            if (!board.validateChoice(coordinate)) {
+            //Get player coordinate slection to put mark
+            Coordinate coordinate = player.putMark();
+            if (board.validateChoice(coordinate) == false) {
                 System.out.println("That space isn't available, try again");
                 error = true;
             } else {
+                //If the space is empty (available) put mark and update board and register movemnt in statistics
                 board.update(player.getMark(), coordinate);
                 statistic.addStatistic(player.toString() + "\tMARK: " + player.getMark().getValue() +
                         "\tROW: " + (coordinate.getPositionX() + 1) + "\tCOLUMN: " + (coordinate.getPositionY() + 1));

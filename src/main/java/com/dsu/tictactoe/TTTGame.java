@@ -43,6 +43,7 @@ public class TTTGame {
             System.out.print("Name: ");
             name = Console.getStringNext();
             playersList.add(new Player(name));
+            //The list must have at least two players
             if(playersList.size() >= 2){
                 System.out.print("Add another player? 0. No 1. Yes : ");
                 option = Console.getInt();
@@ -77,6 +78,7 @@ public class TTTGame {
         do{
             player1 = selectPlayer(1);
             player2 = selectPlayer(2);
+            //Both players must be different
             if(player1.equals(player2)){
                 System.out.println("Oops! Both players should be different. Try again");
                 distinct = false;
@@ -91,6 +93,7 @@ public class TTTGame {
     private Player searchPlayer(int id){
         Player foundPlayer = null;
         for(Player player : playersList){
+            //Search player by id with the given id
             if(player.getId() == id){
                 foundPlayer = player;
             }

@@ -16,7 +16,8 @@ package tictactoe{
         +void statistics()
         -void addPlayer()
         -void displayPlayers()
-        -Player selectPlayer()
+        -Player selectPlayer(int counter)
+        -void setPlayers()
         -Player searchPlayer()
     }
 
@@ -25,8 +26,8 @@ package tictactoe{
         -String name
         -Mark mark
 
-        +Player(int id, String name)
-        +void putMark()
+        +Player(String name)
+        +Coordinate putMark()
     }
 
     class Round{
@@ -35,14 +36,16 @@ package tictactoe{
         -Player player2
         -Statistic statistic
 
-        +Round(Board board,Player player1,Player player2,Statistic statistic)
+        +Round(Board board, Player player1, Player player2, Statistic statistic)
         +void executeRounds()
+        -void executeTurn(Player player)
     }
 
     class Statistic{
         -ArrayList<String> statistics
 
         +void addStatistic(String message)
+        +void displayStatistics()
     }
 
     package board{
@@ -55,12 +58,20 @@ package tictactoe{
             +void paint()
             +boolean validateChoice(Coordinate coordinate)
             +boolean verifyChoiceExistence()
-            +void determineWinner()
+            -boolean verifyColumns(Mark mark)
+            -boolean verifyRows(Mark mark)
+            -boolean verifyDiagonal(Mark mark)
+            -boolean verifyReverseDiagonal(Mark mark)
+            +boolean determineWinner(Mark mark)
+            +void update(Mark mark, Coordinate coordinate)
         }
 
         class Space{
             -Mark mark
             -Coordinate coordinate
+
+            +Space(Mark mark, Coordinate coordinate)
+            +boolean isAvailable()
         }
 
         class Coordinate{
@@ -73,11 +84,14 @@ package tictactoe{
 
     package utils{
         enum Mark{
-            0
+            ZERO
             X
             EMPTY
 
-            -boolean available
+            -String value
+
+            +Mark(String value)
+            +boolean isAvailable(Mark mark)
         }
     }
 }

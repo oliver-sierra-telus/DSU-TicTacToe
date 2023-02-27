@@ -27,7 +27,7 @@ object TTTGame
         object Zero
         object X
         object Empty
-        object availability
+        object isAvailable
     object Statistic
         object winnerName
 
@@ -64,7 +64,7 @@ PlayerGoals <|-- putMark
 Mark <|-- Zero
 Mark <|-- X
 Mark <|-- Empty
-Mark *-- availability
+Mark *-- isAvailable
 
 Statistic *-- winnerName
 Statistic <-- Rounds

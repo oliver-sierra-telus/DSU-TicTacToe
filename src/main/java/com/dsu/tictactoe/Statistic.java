@@ -6,6 +6,7 @@ public class Statistic {
     private ArrayList<String> statistics = new ArrayList<String>();
 
     public void addStatistic(String message){
+        //Add player's movement to statistics
         statistics.add(message);
     }
 

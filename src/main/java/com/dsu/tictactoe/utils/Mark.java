@@ -16,6 +16,7 @@ public enum Mark {
     }
 
     public boolean isAvailable(Mark mark) {
+        //If the given mark is type EMPTY it means that the space is available
         if(mark.equals(Mark.EMPTY)){
             return true;
         }else{

@@ -18,7 +18,7 @@ package tictactoe{
         -void displayPlayers()
         -Player selectPlayer(int counter)
         -void setPlayers()
-        -Player searchPlayer()
+        -Player searchPlayer(int id)
     }
 
     class Player{

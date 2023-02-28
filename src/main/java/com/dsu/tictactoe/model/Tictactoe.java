@@ -27,4 +27,8 @@ public class Tictactoe {
         return turn;
     }
 
+    public Player[] getPlayers() {
+        return players.clone();
+    }
+
 }

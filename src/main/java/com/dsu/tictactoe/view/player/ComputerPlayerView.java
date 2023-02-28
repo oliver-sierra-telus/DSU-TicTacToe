@@ -1,7 +1,5 @@
 package com.dsu.tictactoe.view.player;
 
-import java.util.concurrent.locks.AbstractQueuedLongSynchronizer.ConditionObject;
-
 import com.dsu.tictactoe.model.board.Coordinate;
 import com.dsu.tictactoe.model.board.PutMarkError;
 import com.dsu.tictactoe.utils.Console;

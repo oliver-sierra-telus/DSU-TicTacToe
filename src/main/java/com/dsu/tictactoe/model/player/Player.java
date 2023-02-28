@@ -1,4 +1,4 @@
-package com.dsu.tictactoe.model;
+package com.dsu.tictactoe.model.player;
 
 import com.dsu.tictactoe.model.board.Mark;
 
@@ -6,6 +6,7 @@ public class Player {
 
     private String name;
     private Mark mark;
+    private PlayerType playerType;
 
     public Player(String name) {
         this.name = name;
@@ -51,6 +52,14 @@ public class Player {
         } else if (!name.equals(other.name))
             return false;
         return true;
+    }
+
+    public PlayerType getPlayerType() {
+        return playerType;
+    }
+
+    public void setPlayerType(PlayerType playerType) {
+        this.playerType = playerType;
     }
 
     

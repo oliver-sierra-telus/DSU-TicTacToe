@@ -1,6 +1,7 @@
 package com.dsu.tictactoe.model;
 
 import com.dsu.tictactoe.model.board.Board;
+import com.dsu.tictactoe.model.player.Player;
 
 public class Tictactoe {
 

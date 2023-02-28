@@ -1,5 +1,7 @@
 package com.dsu.tictactoe.model;
 
+import com.dsu.tictactoe.model.player.Player;
+
 public class Result {
     private Player[] players;
     private boolean isATie;

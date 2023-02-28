@@ -1,11 +1,11 @@
-package com.dsu.tictactoe.view;
+package com.dsu.tictactoe.view.player;
 
-import com.dsu.tictactoe.model.Player;
 import com.dsu.tictactoe.model.board.Coordinate;
 import com.dsu.tictactoe.model.board.PutMarkError;
+import com.dsu.tictactoe.model.player.Player;
 import com.dsu.tictactoe.utils.Console;
 
-public class PlayerView {
+public abstract class PlayerView {
 
 
     /**
@@ -18,19 +18,19 @@ public class PlayerView {
         }
         String name = "";
         do {
-            name = Console.readString("Name of "+numberPlayer+" the player:");
+            name = getName(errorMessage, "Name of "+numberPlayer+" the player:");
+            //Console.readString("Name of "+numberPlayer+" the player:")
             name = name.trim();
             if (name.length()==0){
-                Console.printLine("Invalid username, enter again.");
+                errorMessage = "Invalid username, enter again.";;
             }
         } while (name.length()==0);
         return new Player(name);
     }
 
-    public Coordinate getCoordinate(PutMarkError putMarkError) {
-        
-        return new Coordinate(Console.readInt("Input coordinate x:"), Console.readInt("Input coordinate y:"));
-    }
+    public abstract String getName(String error, String message);
+
+    public abstract Coordinate getCoordinate( PutMarkError putMarkError);
 
 
 

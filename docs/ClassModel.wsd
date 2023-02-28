@@ -18,17 +18,25 @@ package tictactoe{
         class TurnController{
 
         }
-        class PlayerController{
+        package player{
+
+            class PlayerController{
+
+            }
+
+            class HumanPlayerController{
+
+            }
+
+            class IAPlayerController{
+
+            }
+
+            HumanPlayerController -up-|> PlayerController
+            IAPlayerController -up-|> PlayerController
 
         }
 
-        class HumanPlayerController{
-
-        }
-
-        class IAPlayerController{
-
-        }
 
         class BoardController{
 
@@ -39,8 +47,7 @@ package tictactoe{
 
         TictactoeController -->TurnController
 
-        HumanPlayerController -up-|> PlayerController
-        IAPlayerController -up-|> PlayerController
+
 
         TurnController --> PlayerController
         TurnController --> BoardController
@@ -84,14 +91,44 @@ package tictactoe{
     package model {
         class Tictactoe{
             -Board board
-            -Turn turn 
+            -Turn turn
             -Player[2] players
-        }        
+        }
 
-        class Board{
+
+        package board{
+            class Board{
+
+            }
+
+            enum Mark{
+                X
+                O
+                EMPTY
+            }
+
+
+            class Coordinate{
+
+            }
+
+            enum PutMarkError{
+                NOT_EMPTY
+                WRONG_COORDINATES
+                NO_ERROR
+            }
+
+            enum TTTLine{
+                ROW
+                COLUMN
+                DIAGONAL
+                INVERTED_DIAGONAL
+            }
 
         }
-        
+
+        class Result
+
         class Turn{
 
         }
@@ -100,11 +137,7 @@ package tictactoe{
 
         }
 
-        enum Mark{
-            X
-            O
-            EMPTY
-        }
+
 
         Tictactoe *-- Board
         Tictactoe *-- Turn
@@ -114,10 +147,10 @@ package tictactoe{
 
 
     TicactoeApp *-- TictactoeController
-    
-    
 
-    
+
+
+
 
     TictactoeController -right-> TictactoeView
     TictactoeController --> Tictactoe

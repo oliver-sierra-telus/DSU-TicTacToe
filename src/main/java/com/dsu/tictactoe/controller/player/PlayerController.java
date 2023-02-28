@@ -1,60 +1,70 @@
 package com.dsu.tictactoe.controller.player;
 
 import com.dsu.tictactoe.controller.ReadyToPlay;
-import com.dsu.tictactoe.model.Player;
 import com.dsu.tictactoe.model.board.Coordinate;
 import com.dsu.tictactoe.model.board.Mark;
 import com.dsu.tictactoe.model.board.PutMarkError;
-import com.dsu.tictactoe.view.PlayerView;
+import com.dsu.tictactoe.model.player.Player;
+import com.dsu.tictactoe.model.player.PlayerType;
+import com.dsu.tictactoe.view.player.PlayerView;
 
 public abstract class PlayerController implements ReadyToPlay{
 
-    private Player[] players;
+    protected Player player;
     protected PlayerView playerView;
-    private final int NUMBER_PLAYERS = 2;
+    protected PlayerType playerType;
 
     public PlayerController(){
-        playerView = new PlayerView();
-        players = new Player[NUMBER_PLAYERS];
+        playerView = initPlayerView();
+        playerType = initPlayerType();
     }
+
+    protected abstract PlayerView initPlayerView();
+    protected abstract PlayerType initPlayerType();
 
     /**
      * For this reason we create the PutMarkError
      * To avoid code of this type
      */
-    public void setNewGamePlayers(){
-        players[0] = playerView.getPlayer(null,"first");
+    public void getNewGamePlayer(Player existingPlayer, String numberOfPlayer){
+
+        Player player;
         String errorMessage = null;
         do {
             
-            players[1] = playerView.getPlayer(errorMessage,"second");
+            player = playerView.getPlayer(errorMessage,numberOfPlayer);
             errorMessage =null;
-            if(players[0].equals(players[1])){
+            if(existingPlayer!=null && existingPlayer.equals(player)){
                 errorMessage = "Repeated player";
             }
         } while (errorMessage!=null);
+        this.player = player;
+        this.player.setPlayerType(playerType);;
     }
 
     public boolean isReady() {
-        return players.length==NUMBER_PLAYERS &&  players[0]!=null && players[1].getMark()!= Mark.EMPTY;
-    }
-
-    public Player[] getPlayers() {
-        assert isReady();
-        return players;
+        return player!=null && player.getMark()!= Mark.EMPTY && player.getPlayerType()!=null;
     }
 
     public abstract Coordinate getPutCoordinate(Mark[][] markMatrix, Mark playerMark, PutMarkError putMarkError);
 
-    public Player getAccordingMark(Mark winner) {
-        assert winner!=Mark.EMPTY && this.isReady();
-        return (players[0].getMark() == winner)?players[0]:players[1];
+    public Player getPlayer() {
+        assert this.isReady();
+        return this.player;
     }
 
-    public void setPlayersMarks(Mark[] marks) {
-        assert isReady() && marks.length==2;
-        players[0].setMark(marks[0]);
-        players[1].setMark(marks[1]);
+    
+
+    public void setMark(Mark mark) {
+        player.setMark(mark);
+    }
+
+    public Mark getMark() {
+        return player.getMark();
+    }
+
+    public String getName() {
+        return player.getName();
     }
 
 }

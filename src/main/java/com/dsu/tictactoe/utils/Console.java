@@ -30,7 +30,6 @@ public class Console {
         int result = 0;
         boolean validResult = false;
         while (!validResult) {
-
             try {
                 result = Integer.parseInt(readString(message));    
                 validResult = true;

@@ -39,7 +39,7 @@ public abstract class PlayerController implements ReadyToPlay{
             }
         } while (errorMessage!=null);
         this.player = player;
-        this.player.setPlayerType(playerType);;
+        this.player.setPlayerType(playerType);
     }
 
     public boolean isReady() {
@@ -51,6 +51,10 @@ public abstract class PlayerController implements ReadyToPlay{
     public Player getPlayer() {
         assert this.isReady();
         return this.player;
+    }
+
+    public void setPlayer(Player player){
+        this.player = player;
     }
 
     

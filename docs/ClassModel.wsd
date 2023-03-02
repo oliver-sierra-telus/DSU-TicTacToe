@@ -159,4 +159,6 @@ package tictactoe{
 
 }
 
+skinparam monochrome reverse
+
 @enduml

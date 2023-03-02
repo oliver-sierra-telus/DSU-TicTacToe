@@ -20,10 +20,7 @@ public class TurnController implements ReadyToPlay {
         turnView = new TurnView();
     }
 
-    public  void setTurn(Turn turn){
-        this.turn = turn;
-        this.turn.setActualMark(Mark.O);
-    }
+    
 
     public void setBoardController(BoardController boardController) {
         this.boardController = boardController;
@@ -80,6 +77,10 @@ public class TurnController implements ReadyToPlay {
 
     private void setNextMark() {
         turn.setActualMark((turn.getActualMark() == Mark.O) ? Mark.X : Mark.O);
+    }
+
+    public void setTurn(Turn turn) {
+        this.turn = turn;
     }
 
 }

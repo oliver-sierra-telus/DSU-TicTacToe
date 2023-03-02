@@ -16,10 +16,6 @@ public class BoardController implements ReadyToPlay {
         this.boardView = new BoardView();
     }
 
-    public void setBoard(Board board) {
-        this.board = board;
-        this.board.setMarkWinner(Mark.EMPTY);
-    }
 
     public boolean isReady() {
         return board != null;
@@ -90,6 +86,11 @@ public class BoardController implements ReadyToPlay {
 
     public void showBoard() {
         boardView.showBoard(board.getMatrixMarks());
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
+
     }
 
 }

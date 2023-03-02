@@ -10,7 +10,7 @@ public class ComputerPlayerView extends PlayerView {
     public String getName(String error, String message) {
         Console.readString("Thinking the name, press enter please . . . ");
         String name = ComputerPlayerView.getAlphaNumericString(10);
-        Console.readString("The name is "+name+" and means nothint xD. Enter to continue. . .");
+        Console.readString("The name is "+name+" and means nothin xD. Enter to continue. . .");
         return name ;
     }
 

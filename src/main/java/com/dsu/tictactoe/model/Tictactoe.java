@@ -1,5 +1,8 @@
 package com.dsu.tictactoe.model;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import com.dsu.tictactoe.model.board.Board;
 import com.dsu.tictactoe.model.player.Player;
 
@@ -7,16 +10,14 @@ public class Tictactoe {
 
     private Board board;
     private Turn turn; 
-    private Player[] players;
+    private List<Player> players;
 
-    public void setPlayers(Player[] players) {
-        this.players = players;
+    public Tictactoe(){
+        players = new LinkedList<>();
     }
 
-    public void newGame(Player[] players) {
-        this.players = players;
-        this.board = new Board();
-        this.turn = new Turn();
+    public List<Player> getPlayers(){
+        return players;
     }
 
     public Board getBoard() {
@@ -25,10 +26,6 @@ public class Tictactoe {
 
     public Turn getTurn() {
         return turn;
-    }
-
-    public Player[] getPlayers() {
-        return players.clone();
     }
 
 }

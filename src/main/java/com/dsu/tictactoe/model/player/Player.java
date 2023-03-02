@@ -26,7 +26,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player [name=" + name + ", mark=" + mark + "]";
+        return "Player [name=" + name +", playerType=" + playerType +((mark==Mark.EMPTY)?"": ", mark=" + mark ) +"]";
     }
 
     @Override

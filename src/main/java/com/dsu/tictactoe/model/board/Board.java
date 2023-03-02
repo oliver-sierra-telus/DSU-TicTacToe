@@ -9,6 +9,7 @@ public class Board {
     private Mark markWinner;
 
     public Board(){
+        markWinner = Mark.EMPTY;
         matrixMarks = new Mark[MATRIX_DIMENSION][MATRIX_DIMENSION];
         emptySpots = MATRIX_DIMENSION*MATRIX_DIMENSION;
         for (int i = 0; i < MATRIX_DIMENSION; i++) {
@@ -27,7 +28,11 @@ public class Board {
     }
 
     public Mark[][] getMatrixMarks(){
-        return matrixMarks.clone();
+        Mark[][] cloneMarks = matrixMarks.clone();
+        for (int i = 0; i < cloneMarks.length; i++) {
+            cloneMarks[i] = cloneMarks[i].clone();
+        }
+        return cloneMarks;
     }
 
     public void putMark(Coordinate coordinate, Mark mark){

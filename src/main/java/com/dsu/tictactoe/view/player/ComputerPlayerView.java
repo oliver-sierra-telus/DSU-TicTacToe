@@ -7,7 +7,7 @@ import com.dsu.tictactoe.utils.Console;
 public class ComputerPlayerView extends PlayerView {
 
     @Override
-    public String getName(String error, String message) {
+    public String getName( String message) {
         Console.readString("Thinking the name, press enter please . . . ");
         String name = ComputerPlayerView.getAlphaNumericString(10);
         Console.readString("The name is "+name+" and means nothin xD. Enter to continue. . .");
@@ -20,6 +20,10 @@ public class ComputerPlayerView extends PlayerView {
             Console.printLine("Oh no!, an error :P");
         }
         return null;
+    }
+
+    public void turnFinish(){
+        Console.readString("Enter to continue . . . ");
     }
 
     public void showThinkingAboutTheCoordinate(int x, int y ){

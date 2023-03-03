@@ -8,9 +8,9 @@ public class Console {
 
     public static void printTitle(String message) {
         System.out.println(FIRST_LINE);
-        printLine("####################################");
-        printLine(message);
-        printLine("####################################");
+        printLine("########################################################");
+        printLine(message.toUpperCase());
+        printLine("########################################################");
     }
 
     public static void printWhiteLine(){

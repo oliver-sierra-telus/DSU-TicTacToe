@@ -37,6 +37,9 @@ public class TurnController implements ReadyToPlay {
 
     public void initGame() {
         assert isReady();
+        
+            System.out.println("ready"+isReady());
+        
         setPlayerMarks(new Mark[]{Mark.O,Mark.X});
         PutMarkError putMarkError = PutMarkError.NOT_ERROR;
         Coordinate playerCoordinate;
@@ -65,7 +68,7 @@ public class TurnController implements ReadyToPlay {
     }
 
     public Result getResult() {
-        assert isReady(); //throws exception
+        assert isReady(); 
         Player winner = (boardController.isATie())?null:getPlayerController(boardController.getWinner()).getPlayer();
         return new Result(new Player[]{playersController[0].getPlayer(), playersController[1].getPlayer()}, boardController.isATie() , winner);
     }
@@ -79,8 +82,18 @@ public class TurnController implements ReadyToPlay {
         turn.setActualMark((turn.getActualMark() == Mark.O) ? Mark.X : Mark.O);
     }
 
-    public void setTurn(Turn turn) {
+    public void setTurn(Turn turn, Mark initMark) {
         this.turn = turn;
+        if ((initMark==null)||(initMark == Mark.EMPTY)){
+            turn.setActualMark(Mark.O);
+        }
+        turn.setActualMark(initMark);
+    }
+
+
+
+    public PlayerController[] getPlayersController() {
+        return playersController;
     }
 
 }

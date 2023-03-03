@@ -1,7 +1,6 @@
 package com.dsu.tictactoe.controller.player;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.dsu.tictactoe.model.player.Player;
 import com.dsu.tictactoe.model.player.PlayerError;
@@ -14,7 +13,12 @@ public class PlayerManagerController {
     private PlayerManagerView playerManagerView;
 
     public PlayerManagerController(List<Player> players) {
+        playerManagerView = new PlayerManagerView();
         this.players = players;
+    }
+
+    public void showAllPlayers(){
+        playerManagerView.showAllPlayers(getPlayers());
     }
 
     public void createPlayer() {
@@ -30,9 +34,7 @@ public class PlayerManagerController {
                 playerError = PlayerError.WRONG_NAME;
                 continue;
             }
-            final Player finalPlayer = newPlayer;
-            List<Player> result = players.stream().filter(p -> finalPlayer.equals(p)).collect(Collectors.toList());
-            if (result.size() != 0) {
+            if (getPlayer(newPlayer.getName()) != null) {
                 playerError = PlayerError.REPEATED;
                 continue;
             }
@@ -47,21 +49,27 @@ public class PlayerManagerController {
             createPlayer();
         }
 
-        List<Player> selectedPlayers = playerManagerView.getNewGamePlayers(List.copyOf(players));
-        //revisar repetidos y que existan
+        List<Player> selectedPlayers = playerManagerView.getNewGamePlayers(getPlayers(), 2);
+        // revisar repetidos y que existan
         PlayerController[] playerControllers = new PlayerController[2];
-        int index =0;
+        int index = 0;
         for (Player player : selectedPlayers) {
-            final Player playerfinal = player;
             playerControllers[index] = PlayerControllerFactory
-                    .getController(players.stream()
-                                    .filter(p -> p.equals(playerfinal))
-                                    .findFirst()
-                                    .get());
+                    .getController(getPlayer(player.getName()));
             index++;
         }
-
         return playerControllers;
+    }
+
+    private Player getPlayer(String name) {
+        return players.stream()
+                .filter(p -> name.equals(p.getName()))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public List<Player> getPlayers(){
+        return List.copyOf(players);
     }
 
 }

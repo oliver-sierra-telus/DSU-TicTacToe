@@ -77,7 +77,7 @@ public class BoardController implements ReadyToPlay {
     }
 
     public boolean isATie() {
-        return board.getMarkWinner() == Mark.EMPTY && board.getNumberEmptySpots() == 0;
+        return board.getMarkWinner() == Mark.EMPTY;
     }
 
     public Mark getWinner() {

@@ -21,6 +21,7 @@ public abstract class PlayerController implements ReadyToPlay{
 
     protected abstract PlayerView initPlayerView();
     protected abstract PlayerType initPlayerType();
+    public abstract Coordinate getPutCoordinate(Mark[][] markMatrix, Mark playerMark, PutMarkError putMarkError);
 
     /**
      * For this reason we create the PutMarkError
@@ -44,9 +45,7 @@ public abstract class PlayerController implements ReadyToPlay{
 
     public boolean isReady() {
         return player!=null && player.getMark()!= Mark.EMPTY && player.getPlayerType()!=null;
-    }
-
-    public abstract Coordinate getPutCoordinate(Mark[][] markMatrix, Mark playerMark, PutMarkError putMarkError);
+    }    
 
     public Player getPlayer() {
         assert this.isReady();

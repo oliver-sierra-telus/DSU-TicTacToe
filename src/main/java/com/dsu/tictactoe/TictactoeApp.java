@@ -13,8 +13,6 @@ public class TictactoeApp {
     }
 
     public void runGame(){
-        tictacToeController.setupGame();
-        tictacToeController.initGame();
-        tictacToeController.statistics();
+        tictacToeController.mainMenu();
     }
 }

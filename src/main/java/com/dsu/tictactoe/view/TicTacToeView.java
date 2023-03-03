@@ -27,5 +27,25 @@ public class TicTacToeView {
 
         Console.printTitle("Winner: "+result.getWinner().toString());
         Console.printLine("Loser: "+result.getLoser());
+        Console.readString("Enter to continue");
+    }
+
+    public int mainMenu() {
+        int optionSelected = 0;
+        do {
+            Console.printTitle("Main menu");
+            Console.printLine("1) List players.");
+            Console.printLine("2) Create player.");
+            Console.printLine("3) Init game.");
+            Console.printLine("0) Exit.");
+            Console.printWhiteLine();
+            optionSelected = Console.readInt("Enter your option:");
+            if (!(optionSelected>=0 && optionSelected<4)){
+                Console.printLine("Error: wrong selection");
+            }
+            else{
+                return optionSelected;
+            }
+        } while (true);
     }
 }

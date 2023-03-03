@@ -18,7 +18,7 @@ public abstract class PlayerView {
         }
         String name = "";
         do {
-            name = getName(errorMessage, "Name of "+numberPlayer+" the player:");
+            name = getName( "Name of "+numberPlayer+" the player:");
             //Console.readString("Name of "+numberPlayer+" the player:")
             name = name.trim();
             if (name.length()==0){
@@ -28,7 +28,7 @@ public abstract class PlayerView {
         return new Player(name);
     }
 
-    public abstract String getName(String error, String message);
+    public abstract String getName(String message);
 
     public abstract Coordinate getCoordinate( PutMarkError putMarkError);
 

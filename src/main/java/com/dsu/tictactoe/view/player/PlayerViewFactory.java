@@ -8,12 +8,10 @@ public class PlayerViewFactory {
         assert(playerType != null);
         switch (playerType) {
             case HUMAN:
-                new HumanPlayerView();
-                break;
+                return new HumanPlayerView();
             case COMPUTER:
-                new ComputerPlayerView();
+                return new ComputerPlayerView();
         }
         return null;
     }
-    
 }

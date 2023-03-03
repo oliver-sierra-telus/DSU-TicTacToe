@@ -32,6 +32,7 @@ public class ComputerPlayerController extends PlayerController {
             coordinateY = random.nextInt(limitRandom);
             ((ComputerPlayerView)playerView).showThinkingAboutTheCoordinate(coordinateX,coordinateY);
         } while (markMatrix[coordinateX][coordinateY]!= Mark.EMPTY);
+        ((ComputerPlayerView)playerView).turnFinish();
         return new Coordinate(coordinateX, coordinateY);
 
     }

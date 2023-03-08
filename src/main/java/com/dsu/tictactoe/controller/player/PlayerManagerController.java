@@ -5,7 +5,7 @@ import java.util.List;
 import com.dsu.tictactoe.model.player.Player;
 import com.dsu.tictactoe.model.player.PlayerError;
 import com.dsu.tictactoe.model.player.PlayerType;
-import com.dsu.tictactoe.view.player.PlayerManagerView;
+import com.dsu.tictactoe.view.console.player.PlayerManagerView;
 
 public class PlayerManagerController {
 

@@ -6,7 +6,7 @@ import com.dsu.tictactoe.model.board.Mark;
 import com.dsu.tictactoe.model.board.PutMarkError;
 import com.dsu.tictactoe.model.player.Player;
 import com.dsu.tictactoe.model.player.PlayerType;
-import com.dsu.tictactoe.view.player.PlayerView;
+import com.dsu.tictactoe.view.console.player.PlayerView;
 
 public abstract class PlayerController implements ReadyToPlay{
 

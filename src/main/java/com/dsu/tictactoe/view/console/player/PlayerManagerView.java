@@ -1,4 +1,4 @@
-package com.dsu.tictactoe.view.player;
+package com.dsu.tictactoe.view.console.player;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -8,6 +8,8 @@ import com.dsu.tictactoe.model.player.Player;
 import com.dsu.tictactoe.model.player.PlayerError;
 import com.dsu.tictactoe.model.player.PlayerType;
 import com.dsu.tictactoe.utils.Console;
+import com.dsu.tictactoe.view.PlayerViewFactory;
+import com.dsu.tictactoe.view.ViewFactorySingleton;
 
 public class PlayerManagerView {
 
@@ -32,7 +34,8 @@ public class PlayerManagerView {
             }
             playerType = PlayerType.getPlayerType(Console.readInt("Select the type: "));
         } while (playerType == null);
-        PlayerView newPlayerView = PlayerViewFactory.getPlayerView(playerType);
+        PlayerViewFactory playerViewFactory = ViewFactorySingleton.getInstance().getPlayerViewFactory();
+        PlayerView newPlayerView =  playerViewFactory.getPlayerView(playerType);
         String name = newPlayerView.getName("Name for the new player: ");
 
         Player player = new Player(name);

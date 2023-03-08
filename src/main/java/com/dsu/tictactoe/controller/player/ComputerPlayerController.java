@@ -6,8 +6,8 @@ import com.dsu.tictactoe.model.board.Coordinate;
 import com.dsu.tictactoe.model.board.Mark;
 import com.dsu.tictactoe.model.board.PutMarkError;
 import com.dsu.tictactoe.model.player.PlayerType;
-import com.dsu.tictactoe.view.player.ComputerPlayerView;
-import com.dsu.tictactoe.view.player.PlayerView;
+import com.dsu.tictactoe.view.console.player.ComputerPlayerView;
+import com.dsu.tictactoe.view.console.player.PlayerView;
 
 public class ComputerPlayerController extends PlayerController {
 

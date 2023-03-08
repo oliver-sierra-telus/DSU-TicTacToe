@@ -4,8 +4,8 @@ import com.dsu.tictactoe.model.board.Coordinate;
 import com.dsu.tictactoe.model.board.Mark;
 import com.dsu.tictactoe.model.board.PutMarkError;
 import com.dsu.tictactoe.model.player.PlayerType;
-import com.dsu.tictactoe.view.player.HumanPlayerView;
-import com.dsu.tictactoe.view.player.PlayerView;
+import com.dsu.tictactoe.view.console.player.HumanPlayerView;
+import com.dsu.tictactoe.view.console.player.PlayerView;
 
 public class HumanPlayerController extends PlayerController {
 

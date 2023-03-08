@@ -12,7 +12,7 @@ public class TictactoeApp {
         tictacToeController = new TictacToeController(tictactoe);
     }
 
-    public void runGame(){
+    public void runGame(String viewType){
         tictacToeController.mainMenu();
     }
 }

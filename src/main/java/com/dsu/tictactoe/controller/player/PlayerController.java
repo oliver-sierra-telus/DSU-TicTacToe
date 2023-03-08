@@ -27,11 +27,9 @@ public abstract class PlayerController implements ReadyToPlay{
      * To avoid code of this type
      */
     public void getNewGamePlayer(Player existingPlayer, String numberOfPlayer){
-
         Player player;
         String errorMessage = null;
         do {
-            
             player = playerView.getPlayer(errorMessage,numberOfPlayer);
             errorMessage =null;
             if(existingPlayer!=null && existingPlayer.equals(player)){
@@ -55,8 +53,6 @@ public abstract class PlayerController implements ReadyToPlay{
         this.player = player;
     }
 
-    
-
     public void setMark(Mark mark) {
         player.setMark(mark);
     }
@@ -68,5 +64,4 @@ public abstract class PlayerController implements ReadyToPlay{
     public String getName() {
         return player.getName();
     }
-
 }

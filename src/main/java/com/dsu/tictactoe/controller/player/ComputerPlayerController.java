@@ -9,12 +9,9 @@ import com.dsu.tictactoe.model.player.PlayerType;
 import com.dsu.tictactoe.view.console.player.ComputerPlayerConsoleView;
 
 public class ComputerPlayerController extends PlayerController {
-
-   
    
     public ComputerPlayerController() {
         super(PlayerType.COMPUTER);
-        //TODO Auto-generated constructor stub
     }
 
     @Override

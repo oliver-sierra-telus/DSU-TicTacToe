@@ -16,5 +16,4 @@ public class ViewSingleton {
         instance = new ConsoleViewFactory();
         return instance;
     }
-    
 }

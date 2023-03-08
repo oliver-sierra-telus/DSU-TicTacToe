@@ -15,8 +15,4 @@ public class HumanPlayerController extends PlayerController {
     public Coordinate getPutCoordinate(Mark[][] markMatrix, Mark playerMark, PutMarkError putMarkError) {
         return playerView.getCoordinate(putMarkError);
     }
-
-  
-
-    
 }

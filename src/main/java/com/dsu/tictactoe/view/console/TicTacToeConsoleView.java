@@ -1,10 +1,12 @@
-package com.dsu.tictactoe.view;
+package com.dsu.tictactoe.view.console;
 
 import com.dsu.tictactoe.model.Result;
 import com.dsu.tictactoe.utils.Console;
+import com.dsu.tictactoe.view.interfaces.TicTacToeView;
 
-public class TicTacToeView {
+public class TicTacToeConsoleView implements TicTacToeView {
 
+    @Override
     public void showInstruccions() {
         Console.printTitle("TicTacToe");
         String whatIs = "Tic Tac Toe is a puzzle game for two players, called X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeded in placing three respective marks in a horizontal, vertical, or diagonal row wins the game. There is also option to play with single player and device will play with you. Also multiplayer means Human vs Human. You can play free puzzle games with your friends and relatives. TicTacToe is playable both on your desktop and on your mobile phone!";
@@ -16,6 +18,7 @@ public class TicTacToeView {
         
     }
 
+    @Override
     public void showStatistics(Result result) {
         Console.printTitle("Statistics");
         if (result.isATie()){
@@ -30,6 +33,7 @@ public class TicTacToeView {
         Console.readString("Enter to continue");
     }
 
+    @Override
     public int mainMenu() {
         int optionSelected = 0;
         do {

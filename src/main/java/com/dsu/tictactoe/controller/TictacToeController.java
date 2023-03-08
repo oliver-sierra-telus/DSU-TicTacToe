@@ -7,7 +7,8 @@ import com.dsu.tictactoe.model.Turn;
 import com.dsu.tictactoe.model.board.Board;
 import com.dsu.tictactoe.model.board.Mark;
 import com.dsu.tictactoe.model.player.Player;
-import com.dsu.tictactoe.view.TicTacToeView;
+import com.dsu.tictactoe.view.ViewSingleton;
+import com.dsu.tictactoe.view.interfaces.TicTacToeView;
 
 public class TictacToeController {
     private Tictactoe tictactoe;
@@ -18,7 +19,7 @@ public class TictacToeController {
 
     public TictacToeController(Tictactoe tictactoe) {
         this.tictactoe = tictactoe;
-        this.ticTacToeView = new TicTacToeView();
+        this.ticTacToeView = ViewSingleton.getInstance().getTicTacToeView();
         boardController = new BoardController();
         turnController = new TurnController();
         playerManagerController = new PlayerManagerController(this.tictactoe.getPlayers());        
@@ -49,6 +50,9 @@ public class TictacToeController {
     public void setupGame() {
         ticTacToeView.showInstruccions();
         PlayerController[] playersController = playerManagerController.getNewGamePlayers();
+        for (PlayerController playerController : playersController) {
+            System.out.println(playerController.getPlayer().toString());
+        }
         Player[] players = new Player[]{playersController[0].getPlayer(),playersController[1].getPlayer()};
         Board newBoard = new Board();
         boardController.setBoard(newBoard);

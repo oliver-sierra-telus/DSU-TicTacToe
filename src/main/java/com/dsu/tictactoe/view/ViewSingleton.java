@@ -1,9 +1,12 @@
 package com.dsu.tictactoe.view;
 
+import com.dsu.tictactoe.view.console.ConsoleViewFactory;
+import com.dsu.tictactoe.view.interfaces.ViewFactory;
+
 /**
  * ViewFactorySingleton
  */
-public class ViewFactorySingleton {
+public class ViewSingleton {
     private static ViewFactory instance;
 
     public static ViewFactory getInstance(){

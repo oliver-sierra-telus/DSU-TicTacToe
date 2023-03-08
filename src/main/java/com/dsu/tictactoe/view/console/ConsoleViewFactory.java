@@ -1,35 +1,44 @@
 package com.dsu.tictactoe.view.console;
 
-import com.dsu.tictactoe.view.PlayerViewFactory;
-import com.dsu.tictactoe.view.PlayerViewSingleton;
-import com.dsu.tictactoe.view.ViewFactory;
-import com.dsu.tictactoe.view.console.player.PlayerManagerView;
+import com.dsu.tictactoe.model.player.PlayerType;
+import com.dsu.tictactoe.view.console.player.ComputerPlayerConsoleView;
+import com.dsu.tictactoe.view.console.player.HumanPlayerConsoleView;
+import com.dsu.tictactoe.view.console.player.PlayerManagerConsoleView;
+import com.dsu.tictactoe.view.interfaces.ViewFactory;
+import com.dsu.tictactoe.view.interfaces.player.PlayerView;
 
 public class ConsoleViewFactory implements ViewFactory {
 
     @Override
-    public PlayerManagerView getPlayerManagerView() {
-       return new PlayerManagerView();
+    public PlayerManagerConsoleView getPlayerManagerView() {
+       return new PlayerManagerConsoleView();
     }
 
     @Override
-    public BoardView getBoardView() {
-        return new BoardView();
+    public BoardConsoleView getBoardView() {
+        return new BoardConsoleView();
     }
 
     @Override
-    public TicTacToeView getTicTacToeView() {
-        return new TicTacToeView();
+    public TicTacToeConsoleView getTicTacToeView() {
+        return new TicTacToeConsoleView();
     }
 
     @Override
-    public TurnView getTurnView() {
-        return new TurnView();
+    public TurnConsoleView getTurnView() {
+        return new TurnConsoleView();
     }
 
     @Override
-    public PlayerViewFactory getPlayerViewFactory() {
-        return PlayerViewSingleton.getInstance();
+    public PlayerView getPlayerView(PlayerType playerType) {
+        assert(playerType != null);
+        switch (playerType) {
+            case HUMAN:
+                return new HumanPlayerConsoleView();
+            case COMPUTER:
+                return new ComputerPlayerConsoleView();
+        } 
+        return null;
     }
     
 }

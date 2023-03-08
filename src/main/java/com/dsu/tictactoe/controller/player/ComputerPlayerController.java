@@ -6,19 +6,15 @@ import com.dsu.tictactoe.model.board.Coordinate;
 import com.dsu.tictactoe.model.board.Mark;
 import com.dsu.tictactoe.model.board.PutMarkError;
 import com.dsu.tictactoe.model.player.PlayerType;
-import com.dsu.tictactoe.view.console.player.ComputerPlayerView;
-import com.dsu.tictactoe.view.console.player.PlayerView;
+import com.dsu.tictactoe.view.console.player.ComputerPlayerConsoleView;
 
 public class ComputerPlayerController extends PlayerController {
 
-    @Override
-    protected PlayerView initPlayerView() {
-        return new ComputerPlayerView();
-    }
-
-    @Override
-    protected PlayerType initPlayerType() {
-        return PlayerType.COMPUTER;
+   
+   
+    public ComputerPlayerController() {
+        super(PlayerType.COMPUTER);
+        //TODO Auto-generated constructor stub
     }
 
     @Override
@@ -30,9 +26,9 @@ public class ComputerPlayerController extends PlayerController {
         do {
             coordinateX = random.nextInt(limitRandom);
             coordinateY = random.nextInt(limitRandom);
-            ((ComputerPlayerView)playerView).showThinkingAboutTheCoordinate(coordinateX,coordinateY);
+            ((ComputerPlayerConsoleView)playerView).showThinkingAboutTheCoordinate(coordinateX,coordinateY);
         } while (markMatrix[coordinateX][coordinateY]!= Mark.EMPTY);
-        ((ComputerPlayerView)playerView).turnFinish();
+        ((ComputerPlayerConsoleView)playerView).turnFinish();
         return new Coordinate(coordinateX, coordinateY);
 
     }

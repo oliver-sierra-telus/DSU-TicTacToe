@@ -5,7 +5,8 @@ import java.util.List;
 import com.dsu.tictactoe.model.player.Player;
 import com.dsu.tictactoe.model.player.PlayerError;
 import com.dsu.tictactoe.model.player.PlayerType;
-import com.dsu.tictactoe.view.console.player.PlayerManagerView;
+import com.dsu.tictactoe.view.ViewSingleton;
+import com.dsu.tictactoe.view.interfaces.player.PlayerManagerView;
 
 public class PlayerManagerController {
 
@@ -13,7 +14,7 @@ public class PlayerManagerController {
     private PlayerManagerView playerManagerView;
 
     public PlayerManagerController(List<Player> players) {
-        playerManagerView = new PlayerManagerView();
+        playerManagerView = ViewSingleton.getInstance().getPlayerManagerView();
         this.players = players;
     }
 
@@ -54,9 +55,11 @@ public class PlayerManagerController {
         PlayerController[] playerControllers = new PlayerController[2];
         int index = 0;
         for (Player player : selectedPlayers) {
+            System.out.println("entroi");
             playerControllers[index] = PlayerControllerFactory
                     .getController(getPlayer(player.getName()));
             index++;
+            System.out.println("salio");
         }
         return playerControllers;
     }

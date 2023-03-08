@@ -4,14 +4,11 @@ import com.dsu.tictactoe.model.board.Coordinate;
 import com.dsu.tictactoe.model.board.PutMarkError;
 import com.dsu.tictactoe.model.player.Player;
 import com.dsu.tictactoe.utils.Console;
+import com.dsu.tictactoe.view.interfaces.player.PlayerView;
 
-public abstract class PlayerView {
+public class HumanPlayerConsoleView implements PlayerView{
 
-
-    /**
-     * For this reason we create the PutMarkError
-     * To avoid code of this type
-     */
+    @Override
     public Player getPlayer(String errorMessage, String numberPlayer) {
         if (errorMessage!=null){
             Console.printLine(errorMessage);
@@ -28,10 +25,14 @@ public abstract class PlayerView {
         return new Player(name);
     }
 
-    public abstract String getName(String message);
+    @Override
+    public String getName( String message) {
+        return Console.readString(message);
+    }
 
-    public abstract Coordinate getCoordinate( PutMarkError putMarkError);
-
-
-
+    @Override
+    public Coordinate getCoordinate(PutMarkError putMarkError) {
+        return new Coordinate(Console.readInt("Input coordinate x:"), Console.readInt("Input coordinate y:"));
+    }
+    
 }

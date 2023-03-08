@@ -6,7 +6,8 @@ import com.dsu.tictactoe.model.board.Mark;
 import com.dsu.tictactoe.model.board.PutMarkError;
 import com.dsu.tictactoe.model.player.Player;
 import com.dsu.tictactoe.model.player.PlayerType;
-import com.dsu.tictactoe.view.console.player.PlayerView;
+import com.dsu.tictactoe.view.ViewSingleton;
+import com.dsu.tictactoe.view.interfaces.player.PlayerView;
 
 public abstract class PlayerController implements ReadyToPlay{
 
@@ -14,13 +15,11 @@ public abstract class PlayerController implements ReadyToPlay{
     protected PlayerView playerView;
     protected PlayerType playerType;
 
-    public PlayerController(){
-        playerView = initPlayerView();
-        playerType = initPlayerType();
+    public PlayerController(PlayerType playerType){
+        this.playerType = playerType;
+        this.playerView = ViewSingleton.getInstance().getPlayerView(playerType);
     }
 
-    protected abstract PlayerView initPlayerView();
-    protected abstract PlayerType initPlayerType();
     public abstract Coordinate getPutCoordinate(Mark[][] markMatrix, Mark playerMark, PutMarkError putMarkError);
 
     /**

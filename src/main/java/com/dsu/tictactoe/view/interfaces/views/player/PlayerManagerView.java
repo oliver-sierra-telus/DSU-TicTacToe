@@ -1,4 +1,4 @@
-package com.dsu.tictactoe.view.interfaces.player;
+package com.dsu.tictactoe.view.interfaces.views.player;
 
 import java.util.List;
 

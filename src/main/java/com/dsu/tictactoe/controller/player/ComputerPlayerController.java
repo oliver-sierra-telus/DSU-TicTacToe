@@ -6,7 +6,6 @@ import com.dsu.tictactoe.model.board.Coordinate;
 import com.dsu.tictactoe.model.board.Mark;
 import com.dsu.tictactoe.model.board.PutMarkError;
 import com.dsu.tictactoe.model.player.PlayerType;
-import com.dsu.tictactoe.view.console.player.ComputerPlayerConsoleView;
 
 public class ComputerPlayerController extends PlayerController {
    
@@ -23,10 +22,10 @@ public class ComputerPlayerController extends PlayerController {
         do {
             coordinateX = random.nextInt(limitRandom);
             coordinateY = random.nextInt(limitRandom);
-            ((ComputerPlayerConsoleView)playerView).showThinkingAboutTheCoordinate(coordinateX,coordinateY);
         } while (markMatrix[coordinateX][coordinateY]!= Mark.EMPTY);
-        ((ComputerPlayerConsoleView)playerView).turnFinish();
-        return new Coordinate(coordinateX, coordinateY);
+        Coordinate selectedCoordinate = new Coordinate(coordinateX, coordinateY);
+        playerView.getCoordinate(putMarkError, selectedCoordinate);
+        return selectedCoordinate;
 
     }
     

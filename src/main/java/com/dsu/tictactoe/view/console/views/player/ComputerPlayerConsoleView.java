@@ -1,29 +1,11 @@
-package com.dsu.tictactoe.view.console.player;
+package com.dsu.tictactoe.view.console.views.player;
 
 import com.dsu.tictactoe.model.board.Coordinate;
 import com.dsu.tictactoe.model.board.PutMarkError;
-import com.dsu.tictactoe.model.player.Player;
 import com.dsu.tictactoe.utils.Console;
-import com.dsu.tictactoe.view.interfaces.player.PlayerView;
+import com.dsu.tictactoe.view.interfaces.views.player.PlayerView;
 
 public class ComputerPlayerConsoleView implements PlayerView{
-
-    @Override
-    public Player getPlayer(String errorMessage, String numberPlayer) {
-        if (errorMessage!=null){
-            Console.printLine(errorMessage);
-        }
-        String name = "";
-        do {
-            name = getName( "Name of "+numberPlayer+" the player:");
-            //Console.readString("Name of "+numberPlayer+" the player:")
-            name = name.trim();
-            if (name.length()==0){
-                errorMessage = "Invalid username, enter again.";;
-            }
-        } while (name.length()==0);
-        return new Player(name);
-    }
 
     @Override
     public String getName( String message) {
@@ -34,19 +16,10 @@ public class ComputerPlayerConsoleView implements PlayerView{
     }
 
     @Override
-    public Coordinate getCoordinate(PutMarkError putMarkError) {
-        if (putMarkError!= PutMarkError.NOT_ERROR){
-            Console.printLine("Oh no!, an error :P");
-        }
-        return null;
-    }
-
-    public void turnFinish(){
+    public Coordinate getCoordinate(PutMarkError putMarkError, Coordinate possiblCoordinate) {
+        Console.printLine("My possible coordinate is: x"+possiblCoordinate.getX()+" y: "+ possiblCoordinate.getY());
         Console.readString("Enter to continue . . . ");
-    }
-
-    public void showThinkingAboutTheCoordinate(int x, int y ){
-        Console.printLine("My possible coordinate is: x"+x+" y: "+y);
+        return possiblCoordinate;
     }
 
 

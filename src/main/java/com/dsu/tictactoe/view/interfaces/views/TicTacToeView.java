@@ -1,4 +1,4 @@
-package com.dsu.tictactoe.view.interfaces;
+package com.dsu.tictactoe.view.interfaces.views;
 
 import com.dsu.tictactoe.model.Result;
 

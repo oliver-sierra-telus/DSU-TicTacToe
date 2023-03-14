@@ -1,13 +1,16 @@
 package com.dsu.tictactoe.view.console;
 
 import com.dsu.tictactoe.model.player.PlayerType;
-import com.dsu.tictactoe.view.console.player.ComputerPlayerConsoleView;
-import com.dsu.tictactoe.view.console.player.HumanPlayerConsoleView;
-import com.dsu.tictactoe.view.console.player.PlayerManagerConsoleView;
-import com.dsu.tictactoe.view.interfaces.ViewFactory;
-import com.dsu.tictactoe.view.interfaces.player.PlayerView;
+import com.dsu.tictactoe.view.console.views.BoardConsoleView;
+import com.dsu.tictactoe.view.console.views.TicTacToeConsoleView;
+import com.dsu.tictactoe.view.console.views.TurnConsoleView;
+import com.dsu.tictactoe.view.console.views.player.ComputerPlayerConsoleView;
+import com.dsu.tictactoe.view.console.views.player.HumanPlayerConsoleView;
+import com.dsu.tictactoe.view.console.views.player.PlayerManagerConsoleView;
+import com.dsu.tictactoe.view.interfaces.ViewsFactory;
+import com.dsu.tictactoe.view.interfaces.views.player.PlayerView;
 
-public class ConsoleViewFactory implements ViewFactory {
+public class ConsoleViewFactory implements ViewsFactory {
 
     @Override
     public PlayerManagerConsoleView getPlayerManagerView() {

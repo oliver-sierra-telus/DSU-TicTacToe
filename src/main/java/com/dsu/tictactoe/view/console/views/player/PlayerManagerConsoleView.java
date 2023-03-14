@@ -1,4 +1,4 @@
-package com.dsu.tictactoe.view.console.player;
+package com.dsu.tictactoe.view.console.views.player;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -9,8 +9,8 @@ import com.dsu.tictactoe.model.player.PlayerError;
 import com.dsu.tictactoe.model.player.PlayerType;
 import com.dsu.tictactoe.utils.Console;
 import com.dsu.tictactoe.view.ViewSingleton;
-import com.dsu.tictactoe.view.interfaces.player.PlayerManagerView;
-import com.dsu.tictactoe.view.interfaces.player.PlayerView;
+import com.dsu.tictactoe.view.interfaces.views.player.PlayerManagerView;
+import com.dsu.tictactoe.view.interfaces.views.player.PlayerView;
 
 public class PlayerManagerConsoleView implements PlayerManagerView {
     

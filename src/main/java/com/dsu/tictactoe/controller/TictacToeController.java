@@ -8,7 +8,7 @@ import com.dsu.tictactoe.model.board.Board;
 import com.dsu.tictactoe.model.board.Mark;
 import com.dsu.tictactoe.model.player.Player;
 import com.dsu.tictactoe.view.ViewSingleton;
-import com.dsu.tictactoe.view.interfaces.TicTacToeView;
+import com.dsu.tictactoe.view.interfaces.views.TicTacToeView;
 
 public class TictacToeController {
     private Tictactoe tictactoe;
@@ -43,16 +43,13 @@ public class TictacToeController {
                     clearGame();
                     break;
             }
-        } while (optionSelected!=0);
-
+        } while (optionSelected!=4);
+        System.exit(0);
     }
 
     public void setupGame() {
         ticTacToeView.showInstruccions();
         PlayerController[] playersController = playerManagerController.getNewGamePlayers();
-        for (PlayerController playerController : playersController) {
-            System.out.println(playerController.getPlayer().toString());
-        }
         Player[] players = new Player[]{playersController[0].getPlayer(),playersController[1].getPlayer()};
         Board newBoard = new Board();
         boardController.setBoard(newBoard);

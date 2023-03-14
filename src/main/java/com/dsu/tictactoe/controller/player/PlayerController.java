@@ -7,7 +7,7 @@ import com.dsu.tictactoe.model.board.PutMarkError;
 import com.dsu.tictactoe.model.player.Player;
 import com.dsu.tictactoe.model.player.PlayerType;
 import com.dsu.tictactoe.view.ViewSingleton;
-import com.dsu.tictactoe.view.interfaces.player.PlayerView;
+import com.dsu.tictactoe.view.interfaces.views.player.PlayerView;
 
 public abstract class PlayerController implements ReadyToPlay{
 
@@ -20,25 +20,7 @@ public abstract class PlayerController implements ReadyToPlay{
         this.playerView = ViewSingleton.getInstance().getPlayerView(playerType);
     }
 
-    public abstract Coordinate getPutCoordinate(Mark[][] markMatrix, Mark playerMark, PutMarkError putMarkError);
-
-    /**
-     * For this reason we create the PutMarkError
-     * To avoid code of this type
-     */
-    public void getNewGamePlayer(Player existingPlayer, String numberOfPlayer){
-        Player player;
-        String errorMessage = null;
-        do {
-            player = playerView.getPlayer(errorMessage,numberOfPlayer);
-            errorMessage =null;
-            if(existingPlayer!=null && existingPlayer.equals(player)){
-                errorMessage = "Repeated player";
-            }
-        } while (errorMessage!=null);
-        this.player = player;
-        this.player.setPlayerType(playerType);
-    }
+    public abstract Coordinate getPutCoordinate(Mark[][] markMatrix, Mark playerMark, PutMarkError putMarkError);    
 
     public boolean isReady() {
         return player!=null && player.getMark()!= Mark.EMPTY && player.getPlayerType()!=null;

@@ -11,8 +11,9 @@ public class TictactoeApp {
         tictactoe = new Tictactoe();
         tictacToeController = new TictacToeController(tictactoe);
     }
-
     public void runGame(){
         tictacToeController.mainMenu();
     }
+
+    
 }

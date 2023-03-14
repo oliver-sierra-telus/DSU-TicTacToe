@@ -8,6 +8,11 @@ public class Player {
     private Mark mark;
     private PlayerType playerType;
 
+    public Player(String name, PlayerType playerType) {
+        this(name);
+        this.playerType = playerType;
+    }
+
     public Player(String name) {
         this.name = name;
         mark = Mark.EMPTY;
@@ -28,6 +33,10 @@ public class Player {
     @Override
     public String toString() {
         return "Name= \"" + name +"\", playerType= " + playerType +((mark==Mark.EMPTY)?"": ", mark=" + mark );
+    }
+
+    public String getResumeString(){
+        return name +" [" + playerType +((mark==Mark.EMPTY)?"]":", " + mark+"]" );
     }
 
     @Override

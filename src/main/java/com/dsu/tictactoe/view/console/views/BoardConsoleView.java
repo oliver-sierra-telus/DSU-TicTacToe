@@ -1,8 +1,8 @@
-package com.dsu.tictactoe.view.console;
+package com.dsu.tictactoe.view.console.views;
 
 import com.dsu.tictactoe.model.board.Mark;
 import com.dsu.tictactoe.utils.Console;
-import com.dsu.tictactoe.view.interfaces.BoardView;
+import com.dsu.tictactoe.view.interfaces.views.BoardView;
 
 public class BoardConsoleView implements BoardView {
 

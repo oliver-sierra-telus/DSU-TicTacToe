@@ -6,8 +6,9 @@ import com.dsu.tictactoe.model.board.Coordinate;
 import com.dsu.tictactoe.model.board.Mark;
 import com.dsu.tictactoe.model.board.PutMarkError;
 import com.dsu.tictactoe.model.player.Player;
+import com.dsu.tictactoe.utils.Console;
 import com.dsu.tictactoe.view.ViewSingleton;
-import com.dsu.tictactoe.view.interfaces.TurnView;
+import com.dsu.tictactoe.view.interfaces.views.TurnView;
 import com.dsu.tictactoe.controller.player.PlayerController;
 
 
@@ -40,11 +41,10 @@ public class TurnController implements ReadyToPlay {
     public void initGame() {
         assert isReady();
         
-            System.out.println("ready"+isReady());
-        
         setPlayerMarks(new Mark[]{Mark.O,Mark.X});
         PutMarkError putMarkError = PutMarkError.NOT_ERROR;
         Coordinate playerCoordinate;
+        turnView.startTurn(new Player[]{playersController[0].getPlayer(), playersController[1].getPlayer()});
         PlayerController playerController;
         Mark playerMark;
         Mark[][] markMatrix;
@@ -62,6 +62,7 @@ public class TurnController implements ReadyToPlay {
             this.setNextMark();
         } while (!boardController.isTicTacToe() && !boardController.isFull());
         boardController.showBoard();
+        turnView.endTurn(new Player[]{playersController[0].getPlayer(), playersController[1].getPlayer()}, boardController.getWinner());
     }
 
     private PlayerController getPlayerController(Mark playerMark) {

@@ -13,6 +13,6 @@ public class HumanPlayerController extends PlayerController {
 
     @Override
     public Coordinate getPutCoordinate(Mark[][] markMatrix, Mark playerMark, PutMarkError putMarkError) {
-        return playerView.getCoordinate(putMarkError);
+        return playerView.getCoordinate(putMarkError, null);
     }
 }
